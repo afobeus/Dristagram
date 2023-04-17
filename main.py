@@ -16,6 +16,7 @@ def main():
     app.run(port=5000, host='127.0.0.1')
 
 
+@app.route("/", methods=["GET", "POST"])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -24,7 +25,7 @@ def login():
         user = db_sess.query(User).filter(User.nickname == form.login.data).first()
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
-            return redirect("/")
+            return redirect(f"/user/{user.nickname}")
         return render_template('login.html',
                                message="Неправильный логин или пароль",
                                form=form)
