@@ -1,0 +1,10 @@
+.profile-picture {
+    float: left;
+    background-color: green;
+    border: 3px;
+}
+.profile-info {
+    float: right;
+    background-color: green;
+    border: 3px;
+}
