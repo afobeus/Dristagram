@@ -13,3 +13,10 @@ class RegisterForm(FlaskForm):
     password_again = PasswordField("Repeat password", validators=[DataRequired()])
     agreement = BooleanField("Согласен с политикой конфидециальности")
     submit = SubmitField("Submit")
+
+
+class LoginForm(FlaskForm):
+    login = StringField("Nickname", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    remember_me = BooleanField("Remember me")
+    submit = SubmitField("Submit")
