@@ -1,6 +1,50 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <section class="profile-image"> <img class="profile-image" src="/static/img/profile_image.jpg"> </section>
-    <aside class="profile-info"> Info </aside>
+<header>
+  <nav>
+    <ul>
+      <li><a href="#">Главная</a></li>
+      <li><a href="#">Профиль</a></li>
+      <li><a href="#">Настройки</a></li>
+      <li><a href="#">Выход</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <div class="profile-header">
+    <div class="profile-avatar">
+      <img src="/static/img/profile_image.jpg" alt="Аватар пользователя">
+    </div>
+    <div class="profile-info">
+      <h1>Имя пользователя</h1>
+      <ul>
+        <li><strong>Публикации:</strong> 100</li>
+        <li><strong>Подписчики:</strong> 1000</li>
+        <li><strong>Подписки:</strong> 200</li>
+      </ul>
+      <p>Описание профиля пользователя. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+  </div>
+  <div class="profile-gallery">
+    <div class="gallery-item">
+      <img src="/static/img/image.jpg" alt="Изображение 1">
+    </div>
+    <div class="gallery-item">
+      <img src="/static/img/image.jpg" alt="Изображение 2">
+    </div>
+    <div class="gallery-item">
+      <img src="/static/img/image.jpg" alt="Изображение 3">
+    </div>
+    <div class="gallery-item">
+      <img src="/static/img/image.jpg" alt="Изображение 4">
+    </div>
+    <div class="gallery-item">
+      <img src="/static/img/image.jpg" alt="Изображение 5">
+    </div>
+    <div class="gallery-item">
+      <img src="/static/img/image.jpg" alt="Изображение 6">
+    </div>
+  </div>
+</main>
 {% endblock %}

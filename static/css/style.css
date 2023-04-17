@@ -1,11 +1,66 @@
-section.profile-image {
-    float: left;
+/* Стили для главного содержимого страницы */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-img.profile-image {
-    border-radius: 50%;
+/* Стили для заголовка профиля */
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.profile-info {
-    float: right;
+/* Стили для аватара профиля */
+.profile-avatar {
+  margin-right: 20px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+/* Стили для изображения внутри аватара профиля */
+.profile-avatar img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Стили для информации о пользователе */
+.profile-info h1 {
+  font-size: 24px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.profile-info ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profile-info li {
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+/* Стили для описания профиля */
+.profile-info p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Стили для галереи изображений */
+.profile-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 5px;
 }
