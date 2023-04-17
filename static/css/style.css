@@ -1,10 +1,11 @@
-.profile-picture {
+section.profile-image {
     float: left;
-    background-color: green;
-    border: 3px;
 }
+
+img.profile-image {
+    border-radius: 50%;
+}
+
 .profile-info {
     float: right;
-    background-color: green;
-    border: 3px;
 }
