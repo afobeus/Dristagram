@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="sidenav">
+    <ul>
+      <li><a class="navigate-button" href="/">Главная</a></li>
+      <li><a class="navigate-button" href="/">Профиль</a></li>
+      <li><a class="navigate-button" href="/">Настройки</a></li>
+      <li><a class="navigate-button" href="/logout">Выход</a></li>
+    </ul>
+</div>
+<main>
+  <div class="profile-header">
+    <div class="profile-avatar">
+      <img src="/static/img/profile_image.jpg" alt="Аватар пользователя">
+    </div>
+    <div class="profile-info">
+      <h1>Имя пользователя</h1>
+      <ul>
+        <li><strong>Публикации:</strong> 100</li>
+        <li><strong>Подписчики:</strong> 1000</li>
+        <li><strong>Подписки:</strong> 200</li>
+      </ul>
+      <p>Анастасия
+Лучший учитель России✨
+Обучаю профессионально без бубна, шариков и мишуры🔮
+Играя меняю жизнь свою и окружающих</p>
+    </div>
+  </div>
+  <div class="profile-gallery">
+    <div class="gallery-item">
+      <img src="/static/img/image.jpg" alt="Изображение 1">
+    </div>
+    <div class="gallery-item">
+      <img src="/static/img/image.jpg" alt="Изображение 2">
+    </div>
+    <div class="gallery-item">
+      <img src="/static/img/image.jpg" alt="Изображение 3">
+    </div>
+    <div class="gallery-item">
+      <img src="/static/img/image.jpg" alt="Изображение 4">
+    </div>
+    <div class="gallery-item">
+      <img src="/static/img/image.jpg" alt="Изображение 5">
+    </div>
+    <div class="gallery-item">
+      <img src="/static/img/image.jpg" alt="Изображение 6">
+    </div>
+  </div>
+</main>
+{% endblock %}
