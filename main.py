@@ -75,5 +75,14 @@ def register():
     return render_template('register.html', title='Регистрация', form=form)
 
 
+@app.route('/user/<nickname>')
+def user_profile(nickname):
+    values = {
+        "title": f"Профиль {nickname}",
+        "nickname": nickname
+    }
+    return render_template("profile.html", **values)
+
+
 if __name__ == '__main__':
     main()
