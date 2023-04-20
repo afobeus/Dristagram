@@ -5,16 +5,15 @@ from .db_session import SqlAlchemyBase
 from sqlalchemy_serializer import SerializerMixin
 
 
-class Post(SqlAlchemyBase, SerializerMixin):
-    __tablename__ = 'posts'
+class Comment(SqlAlchemyBase, SerializerMixin):
+    __tablename__ = 'comments'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     likes = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
-    post_text = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    post_picture = sqlalchemy.Column(sqlalchemy.String, nullable=False)
-    comments_number = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
-    place = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    comment_text = sqlalchemy.Column(sqlalchemy.String, nullable=False)
     user_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("users.id"), nullable=False)
+    post_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("posts.id"), nullable=False)
     modified_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
 
     user = orm.relationship('User')
+    post = orm.relationship('Post')
