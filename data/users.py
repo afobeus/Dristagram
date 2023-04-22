@@ -16,6 +16,11 @@ class User(SqlAlchemyBase, UserMixin):
     birthday = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     modified_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
+    description = sqlalchemy.Column(sqlalchemy.String, default="")
+    avatar = sqlalchemy.Column(sqlalchemy.String, default="/static/img/avatars/default_avatar.png")
+    subscribers = sqlalchemy.Column(sqlalchemy.Integer, default=0)
+    subscriptions = sqlalchemy.Column(sqlalchemy.Integer, default=0)
+    posts = sqlalchemy.Column(sqlalchemy.Integer, default=0)
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)

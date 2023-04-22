@@ -77,9 +77,12 @@ def register():
 
 @app.route('/user/<nickname>')
 def user_profile(nickname):
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).filter(User.nickname == nickname).first()
     values = {
         "title": f"Профиль {nickname}",
-        "nickname": nickname
+        "nickname": nickname,
+        "user": user
     }
     return render_template("profile.html", **values)
 

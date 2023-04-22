@@ -12,19 +12,16 @@
 <main>
   <div class="profile-header">
     <div class="profile-avatar">
-      <img src="/static/img/profile_image.jpg" alt="Аватар пользователя">
+      <img src="{{user.avatar}}" alt="Аватар пользователя">
     </div>
     <div class="profile-info">
-      <h1>Имя пользователя</h1>
+      <h1>{{user.name}} {{user.surname}}</h1>
       <ul>
-        <li><strong>Публикации:</strong> 100</li>
-        <li><strong>Подписчики:</strong> 1000</li>
-        <li><strong>Подписки:</strong> 200</li>
+        <li><strong>Публикации:</strong> {{user.posts}} </li>
+        <li><strong>Подписчики:</strong> {{user.subscribers}} </li>
+        <li><strong>Подписки:</strong> {{user.subscriptions}} </li>
       </ul>
-      <p>Анастасия
-Лучший учитель России✨
-Обучаю профессионально без бубна, шариков и мишуры🔮
-Играя меняю жизнь свою и окружающих</p>
+      <p>{{user.description}}</p>
     </div>
   </div>
   <div class="profile-gallery">
