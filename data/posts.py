@@ -18,3 +18,4 @@ class Post(SqlAlchemyBase, SerializerMixin):
     modified_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
 
     user = orm.relationship('User')
+    comments = orm.relationship("Comment", back_populates='post')

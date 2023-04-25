@@ -12,8 +12,7 @@ class Comment(SqlAlchemyBase, SerializerMixin):
     likes = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     comment_text = sqlalchemy.Column(sqlalchemy.String, nullable=False)
     user_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("users.id"), nullable=False)
-    post_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("posts.id"), nullable=False)
-    modified_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
-
     user = orm.relationship('User')
+    post_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("posts.id"), nullable=False)
     post = orm.relationship('Post')
+    modified_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
