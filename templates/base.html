@@ -18,6 +18,14 @@
     <title>{{ title }}</title>
 </head>
 <body>
+<header>
+    <div class="logo">
+        <a href="/feed"> <img src="/static/logo.png" alt="Логотип вашей компании"> </a>
+    </div>
+    <div class="company-name">
+        <a href="/feed" class="company-name"> <h1>Divvy</h1> </a>
+    </div>
+</header>
 <!-- Begin page content -->
 <main role="main" class="container">
     {% block content %}{% endblock %}

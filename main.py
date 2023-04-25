@@ -87,5 +87,10 @@ def user_profile(nickname):
     return render_template("profile.html", **values)
 
 
+@app.route('/test')
+def test():
+    return render_template("base.html")
+
+
 if __name__ == '__main__':
     main()

@@ -1,8 +1,28 @@
-main {
-  padding: 80px;
-  max-width: 1000px;
+.company-name a {
+  text-decoration: none;
 }
 
+header {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 0 20px;
+  text-decoration: none;
+}
+
+.logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.company-name h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
 .profile-header {
   display: flex;
   align-items: center;
