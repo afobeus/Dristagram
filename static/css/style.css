@@ -1,3 +1,11 @@
+main {
+  margin-left: 230px;
+  margin-right: 30px;
+  margin-top: 10px;
+  padding: 20px;
+  background-color: #fff;
+}
+
 header {
   display: flex;
   align-items: center;
@@ -12,10 +20,58 @@ header {
   border-radius: 50%;
 }
 
-.company-name {
+.navbar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 150px;
+  height: 100vh;
+  background-color: #f8f8f8;
+  border-right: 1px solid #ccc;
+}
+
+.navbar-brand {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.navbar-brand img {
+  height: 30px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.brand-name {
   font-family: Verdana, serif;
   font-size: 26px;
+  color: black;
   margin: 0;
+}
+
+.brand-link {
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 20px 10px;
+}
+
+.nav-links li {
+  margin-bottom: 10px;
+}
+
+.nav-links a {
+  display: block;
+  padding: 5px 10px;
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.nav-links a:hover {
+  background-color: #eee;
 }
 
 .profile-header {

@@ -89,7 +89,7 @@ def user_profile(nickname):
 
 @app.route('/test')
 def test():
-    return render_template("base.html")
+    return render_template("authorised_base.html")
 
 
 if __name__ == '__main__':

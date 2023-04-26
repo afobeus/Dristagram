@@ -20,16 +20,17 @@
 <body>
 <header>
     <div class="logo">
-        <img src="/static/logo.png" alt="Логотип компании">
+        <a href="/feed">
+            <img src="/static/logo.png" alt="Логотип компании">
+        </a>
     </div>
-    <h1 class="company-name">Divvy</h1>
-    <div class="user-avatar">
-        <img src="/static/img/avatars/default_avatar.png" alt="Аватар пользователя">
-    </div>
+    <a href="/feed" class="brand-link"> <h1 class="brand-name">Divvy</h1> </a>
+    {% block user_avatar %} {% endblock %}
 </header>
+{% block navbar %} {% endblock %}
 <!-- Begin page content -->
-<main role="main" class="container">
-    {% block content %}{% endblock %}
+<main class="content">
+    {% block content %} {% endblock %}
 </main>
 </body>
 </html>
