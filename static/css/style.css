@@ -1,28 +1,23 @@
-.company-name a {
-  text-decoration: none;
-}
-
 header {
   display: flex;
   align-items: center;
-  height: 44px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 0 20px;
-  text-decoration: none;
+  justify-content: space-between;
+  background-color: #f8f8f8;
+  padding: 10px 20px;
 }
 
-.logo img {
-  height: 40px;
-  margin-right: 10px;
+.logo img, .user-avatar img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
 }
 
-.company-name h1 {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
+.company-name {
+  font-family: Verdana, serif;
+  font-size: 26px;
   margin: 0;
 }
+
 .profile-header {
   display: flex;
   align-items: center;
