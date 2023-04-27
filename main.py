@@ -1,8 +1,10 @@
 from flask import Flask, redirect, render_template
 from data import db_session
 from data.users import User
+from data.posts import Post
+from forms.post import PostAddForm
 from forms.user import RegisterForm, LoginForm
-from flask_login import LoginManager, login_user, login_required, logout_user
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
 
 app = Flask(__name__)
@@ -14,6 +16,31 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 def main():
     db_session.global_init("db/users.db")
     app.run(port=5000, host='127.0.0.1')
+
+
+@app.route("/feed")
+def feed():
+    db_sess = db_session.create_session()
+    posts = db_sess.query(Post).all()
+    if len(posts) > 10:
+        posts = posts[:10]
+    return render_template("feed.html", title="Лента", posts=posts)
+
+
+@app.route("/addpost", methods=["GET", "POST"])
+def add_post():
+    form = PostAddForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        post = Post()
+        post.post_text = form.post_text.data
+        post.post_picture = f"static/img/post_img_{current_user.posts + 1}.png"
+        current_user.posts += 1
+        current_user.post.append(post)
+        db_sess.merge(current_user)
+        db_sess.commit()
+        return redirect("/feed")
+    return render_template("add_post.html", title="Добавление поста", form=form)
 
 
 @app.route("/", methods=["GET", "POST"])

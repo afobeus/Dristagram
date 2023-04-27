@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if current_user.is_authenticated %}
+        <p>
+            <a class="btn btn-dark" href="/addpost">Создать запись</a>
+        </p>
+    {% endif %}
+    {% for post in posts %}
+        <div align="center">
+            <img src="{{post.user.avatar}}" alt="Аватар пользователя">
+        </div>
+    {% endfor %}
+{% endblock %}
