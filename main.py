@@ -4,7 +4,7 @@ from data.users import User
 from data.posts import Post
 from forms.post import PostAddForm
 from forms.user import RegisterForm, LoginForm
-from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user, mixins
 
 
 app = Flask(__name__)
@@ -20,6 +20,8 @@ def main():
 
 @app.route("/feed")
 def feed():
+    if isinstance(current_user, mixins.AnonymousUserMixin):
+        return redirect("/login")
     db_sess = db_session.create_session()
     posts = db_sess.query(Post).all()
     if len(posts) > 10:
@@ -29,6 +31,8 @@ def feed():
 
 @app.route("/addpost", methods=["GET", "POST"])
 def add_post():
+    if isinstance(current_user, mixins.AnonymousUserMixin):
+        return redirect("/login")
     form = PostAddForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
@@ -51,8 +55,6 @@ def login():
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.nickname == form.login.data).first()
-        if not user:
-            return redirect("/register")
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             return redirect(f"/user/{user.nickname}")
@@ -107,6 +109,8 @@ def register():
 
 @app.route('/user/<nickname>')
 def user_profile(nickname):
+    if isinstance(current_user, mixins.AnonymousUserMixin):
+        return redirect("/login")
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.nickname == nickname).first()
     values = {
