@@ -35,9 +35,10 @@ def add_post():
         post = Post()
         post.post_text = form.post_text.data
         post.post_picture = f"static/img/post_img_{current_user.posts + 1}.png"
-        current_user.posts += 1
+        user = db_sess.query(User).filter(User.id == current_user.id).first()
         current_user.post.append(post)
         db_sess.merge(current_user)
+        user.posts += 1
         db_sess.commit()
         return redirect("/feed")
     return render_template("add_post.html", title="Добавление поста", form=form)

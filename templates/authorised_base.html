@@ -20,19 +20,20 @@
 <body>
 <nav class="navbar">
   <div class="navbar-brand">
-    <a href="#" class="brand-link">
+    <a href="" class="brand-link">
       <table>
           <tr>
               <td><img src="/static/logo.png" alt="Brand Logo"></td>
               <td><h1 class="brand-name">Divvy</h1></td>
           </tr>
       </table>
+
     </a>
   </div>
   <ul class="nav-links">
-    <li><a href="#">Главная</a></li>
-    <li><a href="#">Профиль</a></li>
-    <li><a href="#">Выйти</a></li>
+    <li><a href="/feed">Лента</a></li>
+    <li><a href="/user/{{ current_user.nickname }}">Профиль</a></li>
+    <li><a href="/logout">Выйти</a></li>
   </ul>
 </nav>
 <!-- Begin page content -->
