@@ -51,6 +51,8 @@ def login():
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.nickname == form.login.data).first()
+        if not user:
+            return redirect("/register")
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             return redirect(f"/user/{user.nickname}")
