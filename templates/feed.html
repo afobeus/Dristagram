@@ -1,14 +1,44 @@
 {% extends "authorised_base.html" %}
 
 {% block content %}
-    {% if current_user.is_authenticated %}
-        <p>
-            <a class="btn btn-dark" href="/addpost">Создать запись</a>
-        </p>
-    {% endif %}
-    {% for post in posts %}
-        <div align="center">
-            <img src="{{post.user.avatar}}" alt="Аватар пользователя">
+<main>
+    <p>
+        <a class="btn btn-dark" href="/addpost">Create a post</a>
+    </p>
+    <div class="container">
+        <div class="row">
+            {% for post in posts %}
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <img src="{{ post.user.avatar }}" alt="Post">
+                        <a href="">{{ post.user.nickname }}</a>
+                        <span>5 minutes ago</span>
+                    </div>
+                    <div class="card-body">
+                        <img src="/{{ post.post_picture }}" alt="Post">
+                    </div>
+                    <div class="card-footer">
+                        <div class="actions">
+                            <a href=""><i class="fa fa-heart"></i></a>
+                            <a href=""><i class="fa fa-comment"></i></a>
+                            <a href=""><i class="fa fa-paper-plane"></i></a>
+                        </div>
+                        <span class="likes">{{post.likes}} likes</span>
+                        <div class="comments">
+                        </div>
+                        <form action="" class="comment-form">
+                            <input type="text" placeholder="Add a comment...">
+                            <button type="submit">Send a comment</button>
+                            <p>
+                                <a class="btn btn-dark" href="/like_post/{{ post.id }}">Like the post</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    </div>
+</main>
 {% endblock %}

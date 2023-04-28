@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, request
 from data import db_session
 from data.users import User
 from data.posts import Post
@@ -39,6 +39,10 @@ def add_post():
         post = Post()
         post.post_text = form.post_text.data
         post.post_picture = f"static/img/post_img_{current_user.posts + 1}.png"
+
+        with open(post.post_picture, "wb") as file:
+            file.write(request.files["post_picture"].read())
+
         user = db_sess.query(User).filter(User.id == current_user.id).first()
         current_user.post.append(post)
         db_sess.merge(current_user)
@@ -46,6 +50,24 @@ def add_post():
         db_sess.commit()
         return redirect("/feed")
     return render_template("add_post.html", title="Добавление поста", form=form)
+
+
+@app.route("/like_post/<int:post_id>")
+def like_post(post_id):
+    db_sess = db_session.create_session()
+    post = db_sess.query(Post).filter(Post.id == post_id).first()
+    post.likes += 1
+    db_sess.commit()
+    return redirect("/feed")
+
+
+@app.route("/delete_post/<int:post_id>")
+def delete_post(post_id):
+    db_sess = db_session.create_session()
+    post = db_sess.query(Post).filter(Post.id == post_id).first()
+    db_sess.delete(post)
+    db_sess.commit()
+    return redirect("/feed")
 
 
 @app.route("/", methods=["GET", "POST"])

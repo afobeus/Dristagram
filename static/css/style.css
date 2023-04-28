@@ -127,3 +127,194 @@ header {
   display: block;
   border-radius: 5px;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #fafafa;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.top-nav {
+  height: 54px;
+  background-color: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.0975);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.logo {
+  font-size: 2em;
+  font-weight: 800;
+  line-height: 54px;
+  display: inline-block;
+  margin-right: 40px;
+  color: #000;
+  text-decoration: none;
+}
+
+.search-form {
+  display: inline-block;
+  margin-right: 40px;
+  position: relative;
+  top: 8px;
+}
+
+.search-form input {
+  border: none;
+  padding: 8px;
+  font-size: 1em;
+  width: 150px;
+  border-radius: 3px;
+  background-color: #fafafa;
+}
+
+.search-form button {
+  border: none;
+  position: absolute;
+  top: 8px;
+  right: 0;
+  background-color: transparent;
+}
+
+.menu {
+  display: inline-block;
+  float: right;
+}
+
+.menu li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.menu a {
+  display: inline-block;
+  height: 54px;
+  width: 54px;
+  text-align: center;
+  color: #000;
+  font-size: 1.5em;
+  line-height: 54px;
+  text-decoration: none;
+}
+
+.menu a img {
+  border-radius: 50%;
+  width: 32px;
+}
+
+.card {
+  background-color: #fff;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.0975);
+  width: 900px;
+}
+
+.card-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.card-header img {
+  border-radius: 50%;
+  width: 32px;
+  margin-right: 10px;
+}
+
+.card-header a {
+  font-weight: 600;
+  color: #000;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.card-header span {
+  font-size: 0.8em;
+  color: #8e8e8e;
+}
+
+.card-body img {
+  width: 100%;
+}
+
+.card-footer {
+  padding: 20px;
+}
+
+.actions a {
+  margin-right: 20px;
+  color: #000;
+}
+
+.actions a i {
+  font-size: 1.5em;
+}
+
+.likes {
+  display: block;
+  margin: 10px 0;
+  font-weight: 600;
+  color: #000;
+}
+
+.comments .comment {
+  margin: 5px 0;
+}
+
+.comments .comment a {
+  font-weight: 600;
+  color: #000;
+  margin-right: 5px;
+  text-decoration: none;
+}
+
+.comment-form {
+  margin-top: 10px;
+}
+
+.comment-form input {
+  border: none;
+  padding: 8px;
+  font-size: 1em;
+  width: 80%;
+  border-radius: 3px;
+  background-color: #fafafa;
+}
+
+.comment-form button {
+  border: none;
+  background-color: transparent;
+  color: #3897f0;
+  font-weight: 600;
+  font-size: 1em;
+  margin-left: 10px;
+}
+
+.container {
+  padding: 0 10px;
+}
+
+.logo {
+  margin-right: 20px;
+}
+
+.search-form {
+  margin-right: 20px;
+}
+
+.menu {
+  display: none;
+}
