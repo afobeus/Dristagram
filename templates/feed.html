@@ -13,9 +13,10 @@
                     <div class="card-header">
                         <img src="{{ post.user.avatar }}" alt="Post">
                         <a href="">{{ post.user.nickname }}</a>
-                        <span>5 minutes ago</span>
+                        <span>{{ time_now - post.modified_date }} ago</span>
                     </div>
                     <div class="card-body">
+                        {{ post.post_text }}
                         <img src="/{{ post.post_picture }}" alt="Post">
                     </div>
                     <div class="card-footer">
@@ -27,12 +28,9 @@
                         <span class="likes">{{post.likes}} likes</span>
                         <div class="comments">
                         </div>
-                        <form action="" class="comment-form">
-                            <input type="text" placeholder="Add a comment...">
-                            <button type="submit">Send a comment</button>
-                            <p>
-                                <a class="btn btn-dark" href="/like_post/{{ post.id }}">Like the post</a>
-                            </p>
+                        <form class="comment-form" action="/send_comment/{{ post.id }}" method="post">
+                            <input type="text" placeholder="Add a comment..." name="comment_text">
+                            <a class="btn btn-dark" href="/like_post/{{ post.id }}">Like the post</a>
                         </form>
                     </div>
                 </div>

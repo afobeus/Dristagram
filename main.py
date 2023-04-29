@@ -1,5 +1,6 @@
 from flask import Flask, redirect, render_template, request
 from data import db_session
+from datetime import datetime
 from data.users import User
 from data.posts import Post
 from forms.post import PostAddForm
@@ -18,15 +19,23 @@ def main():
     app.run(port=5000, host='127.0.0.1')
 
 
+@app.route("/send_comment/<int:post_id>", methods=["POST"])
+def send_comment(post_id):
+    print(request.form)
+
+    return redirect("/feed")
+
+
 @app.route("/feed")
 def feed():
     if isinstance(current_user, mixins.AnonymousUserMixin):
         return redirect("/login")
     db_sess = db_session.create_session()
     posts = db_sess.query(Post).all()
+    time_now = datetime.now()
     if len(posts) > 10:
         posts = posts[:10]
-    return render_template("feed.html", title="Лента", posts=posts)
+    return render_template("feed.html", title="Лента", posts=posts, time_now=time_now)
 
 
 @app.route("/addpost", methods=["GET", "POST"])
@@ -38,7 +47,7 @@ def add_post():
         db_sess = db_session.create_session()
         post = Post()
         post.post_text = form.post_text.data
-        post.post_picture = f"static/img/post_img_{current_user.posts + 1}.png"
+        post.post_picture = f"static/img/post_img_{current_user.nickname}_{current_user.posts + 1}.png"
 
         with open(post.post_picture, "wb") as file:
             file.write(request.files["post_picture"].read())
@@ -54,6 +63,8 @@ def add_post():
 
 @app.route("/like_post/<int:post_id>")
 def like_post(post_id):
+    if isinstance(current_user, mixins.AnonymousUserMixin):
+        return redirect("/login")
     db_sess = db_session.create_session()
     post = db_sess.query(Post).filter(Post.id == post_id).first()
     post.likes += 1
@@ -63,6 +74,8 @@ def like_post(post_id):
 
 @app.route("/delete_post/<int:post_id>")
 def delete_post(post_id):
+    if isinstance(current_user, mixins.AnonymousUserMixin):
+        return redirect("/login")
     db_sess = db_session.create_session()
     post = db_sess.query(Post).filter(Post.id == post_id).first()
     db_sess.delete(post)
@@ -73,6 +86,8 @@ def delete_post(post_id):
 @app.route("/", methods=["GET", "POST"])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if not isinstance(current_user, mixins.AnonymousUserMixin):
+        return redirect(f"/user/{current_user.nickname}")
     form = LoginForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
@@ -95,12 +110,16 @@ def load_user(user_id):
 @app.route('/logout')
 @login_required
 def logout():
+    if isinstance(current_user, mixins.AnonymousUserMixin):
+        return redirect("/login")
     logout_user()
     return redirect("/")
 
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    if not isinstance(current_user, mixins.AnonymousUserMixin):
+        return redirect(f"/user/{current_user.nickname}")
     form = RegisterForm()
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:

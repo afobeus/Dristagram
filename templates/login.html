@@ -23,7 +23,10 @@
             {% endfor %}
         </p>
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+        <p>{{ form.submit(type="submit", class="btn btn-dark") }}</p>
         <div>{{ message }}</div>
     </form>
+    <p>
+        <a class="btn btn-dark" href="/register">Create a new account</a>
+    </p>
 {% endblock %}
