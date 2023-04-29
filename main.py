@@ -73,6 +73,9 @@ def delete_post(post_id):
 @app.route("/", methods=["GET", "POST"])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if isinstance(current_user, User):
+        nickname = current_user.nickname
+        return redirect(f"/user/{nickname}")
     form = LoginForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
@@ -101,6 +104,9 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    if isinstance(current_user, User):
+        nickname = current_user.nickname
+        return redirect(f"/user/{nickname}")
     form = RegisterForm()
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
