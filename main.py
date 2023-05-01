@@ -1,6 +1,7 @@
 from flask import Flask, redirect, render_template, request
 from data import db_session
 from datetime import datetime
+from data.comments import Comment
 from data.users import User
 from data.posts import Post
 from forms.post import PostAddForm
@@ -22,7 +23,17 @@ def main():
 
 @app.route("/send_comment/<int:post_id>", methods=["POST"])
 def send_comment(post_id):
-    print(request.form)
+    if request.form["comment_text"]:
+        db_sess = db_session.create_session()
+        comment = Comment()
+        comment.comment_text = request.form["comment_text"]
+        comment.post_id = post_id
+        comment.user_id = current_user.id
+
+        post = db_sess.query(Post).filter(Post.id == post_id).first()
+        post.comments.append(comment)
+        post.comments_number += 1
+        db_sess.commit()
 
     return redirect("/feed")
 
