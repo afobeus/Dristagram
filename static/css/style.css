@@ -136,7 +136,7 @@ header {
   height: auto;
   aspect-ratio: 1/1;
   border-radius: 5px;
-  object-fit: cover;
+
 }
 
 .top-nav {
@@ -253,4 +253,12 @@ header {
 
 .logo {
   margin-right: 20px;
+}
+
+.posts-container {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(80px, 700px));
+  grid-gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
