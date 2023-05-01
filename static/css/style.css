@@ -77,6 +77,7 @@ header {
 
 .profile-header {
   display: flex;
+  justify-content: center;
   align-items: center;
   margin-bottom: 40px;
   margin-left: 10%;
@@ -92,7 +93,6 @@ header {
 .profile-avatar img {
   width: 100%;
   height: auto;
-  display: block;
 }
 
 .profile-info h1 {
@@ -119,7 +119,7 @@ header {
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(3, minmax(100px, 300px));
+  grid-template-columns: repeat(3, minmax(80px, 300px));
   grid-gap: 10px;
   justify-content: center;
   align-items: center;
@@ -136,12 +136,7 @@ header {
   height: auto;
   aspect-ratio: 1/1;
   border-radius: 5px;
-}
-
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 20px;
+  object-fit: cover;
 }
 
 .top-nav {
@@ -163,56 +158,6 @@ header {
   margin-right: 40px;
   color: #000;
   text-decoration: none;
-}
-
-.search-form {
-  display: inline-block;
-  margin-right: 40px;
-  position: relative;
-  top: 8px;
-}
-
-.search-form input {
-  border: none;
-  padding: 8px;
-  font-size: 1em;
-  width: 150px;
-  border-radius: 3px;
-  background-color: #fafafa;
-}
-
-.search-form button {
-  border: none;
-  position: absolute;
-  top: 8px;
-  right: 0;
-  background-color: transparent;
-}
-
-.menu {
-  display: inline-block;
-  float: right;
-}
-
-.menu li {
-  display: inline-block;
-  margin-left: 20px;
-}
-
-.menu a {
-  display: inline-block;
-  height: 54px;
-  width: 54px;
-  text-align: center;
-  color: #000;
-  font-size: 1.5em;
-  line-height: 54px;
-  text-decoration: none;
-}
-
-.menu a img {
-  border-radius: 50%;
-  width: 32px;
 }
 
 .card {
@@ -250,6 +195,7 @@ header {
 
 .card-body img {
   width: 100%;
+  max-height: 500px;
 }
 
 .card-footer {
@@ -305,18 +251,6 @@ header {
   margin-left: 10px;
 }
 
-.container {
-  padding: 0 10px;
-}
-
 .logo {
   margin-right: 20px;
-}
-
-.search-form {
-  margin-right: 20px;
-}
-
-.menu {
-  display: none;
 }
