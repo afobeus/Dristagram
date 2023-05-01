@@ -79,6 +79,8 @@ header {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .profile-avatar {
@@ -115,10 +117,12 @@ header {
   line-height: 1.5;
 }
 
-.profile-gallery {
+.gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .gallery-item img {
