@@ -75,16 +75,18 @@ def add_post():
     return render_template("add_post.html", title="Добавление поста", form=form)
 
 
-@app.route("/like_post/<int:post_id>")
-def like_post(post_id):
+@app.route("/like_post/<int:post_id>/<redirect_link>")
+def like_post(post_id, redirect_link):
     if isinstance(current_user, mixins.AnonymousUserMixin):
         return redirect("/login")
     db_sess = db_session.create_session()
     post = db_sess.query(Post).filter(Post.id == post_id).first()
     post.likes += 1
     db_sess.commit()
-    print(request.url)
-    return redirect("/feed")
+    if redirect_link == "post_page":
+        return redirect(f"/post/{post.id}")
+    else:
+        return redirect("/feed")
 
 
 @app.route("/delete_post/<int:post_id>")

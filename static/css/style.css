@@ -195,7 +195,7 @@ header {
 
 .card-body img {
   width: 100%;
-  max-height: 500px;
+  max-height: 600px;
 }
 
 .card-footer {
@@ -257,7 +257,7 @@ header {
 
 .posts-container {
   display: grid;
-  grid-template-columns: repeat(1, minmax(80px, 700px));
+  grid-template-columns: repeat(1, minmax(80px, 900px));
   grid-gap: 10px;
   justify-content: center;
   align-items: center;
