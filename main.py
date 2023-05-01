@@ -69,6 +69,7 @@ def like_post(post_id):
     post = db_sess.query(Post).filter(Post.id == post_id).first()
     post.likes += 1
     db_sess.commit()
+    print(request.url)
     return redirect("/feed")
 
 
@@ -160,6 +161,20 @@ def user_profile(nickname):
         "user": user
     }
     return render_template("profile.html", **values)
+
+
+@app.route("/post/<int:post_id>")
+def post_page(post_id):
+    if isinstance(current_user, mixins.AnonymousUserMixin):
+        return redirect("/login")
+    db_sess = db_session.create_session()
+    post = db_sess.query(Post).filter(Post.id == post_id).first()
+    values = {
+        "title": f"Пост",
+        "post": post,
+        "time_now": datetime.now()
+    }
+    return render_template("post_page.html", **values)
 
 
 if __name__ == '__main__':

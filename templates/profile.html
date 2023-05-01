@@ -16,23 +16,12 @@
   </div>
 </div>
 <div class="profile-gallery">
-  <div class="gallery-item">
-    <img src="/static/img/image.jpg" alt="Изображение 1">
-  </div>
-  <div class="gallery-item">
-    <img src="/static/img/image.jpg" alt="Изображение 2">
-  </div>
-  <div class="gallery-item">
-    <img src="/static/img/image.jpg" alt="Изображение 3">
-  </div>
-  <div class="gallery-item">
-    <img src="/static/img/image.jpg" alt="Изображение 4">
-  </div>
-  <div class="gallery-item">
-    <img src="/static/img/image.jpg" alt="Изображение 5">
-  </div>
-  <div class="gallery-item">
-    <img src="/static/img/image.jpg" alt="Изображение 6">
-  </div>
+  {% for post in user.post %}
+    <div class="gallery-item">
+      <a href="/post/{{ post.id }}">
+        <img src="/static/img/image.jpg" alt="Изображение 1">
+      </a>
+    </div>
+  {% endfor %}
 </div>
 {% endblock %}
