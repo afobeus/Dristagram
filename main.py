@@ -6,6 +6,7 @@ from data.posts import Post
 from forms.post import PostAddForm
 from forms.user import RegisterForm, LoginForm
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user, mixins
+from functions import format_social_media_post_time
 
 
 app = Flask(__name__)
@@ -35,7 +36,9 @@ def feed():
     time_now = datetime.now()
     if len(posts) > 10:
         posts = posts[:10]
-    return render_template("feed.html", title="Лента", posts=posts, time_now=time_now)
+    prescriptions = [format_social_media_post_time(post.modified_date) for post in posts]
+    return render_template("feed.html", title="Лента", posts=posts, time_now=time_now,
+                           prescriptions=prescriptions)
 
 
 @app.route("/addpost", methods=["GET", "POST"])
@@ -170,9 +173,9 @@ def post_page(post_id):
     db_sess = db_session.create_session()
     post = db_sess.query(Post).filter(Post.id == post_id).first()
     values = {
-        "title": f"Пост",
+        "title": f"Пост от {post.user.nickname}",
         "post": post,
-        "time_now": datetime.now()
+        "prescription": format_social_media_post_time(post.modified_date)
     }
     return render_template("post_page.html", **values)
 
