@@ -19,7 +19,7 @@
   {% for post in user.post %}
     <div class="gallery-item">
       <a href="/post/{{ post.id }}">
-        <img src="/static/img/image.jpg" alt="Изображение 1">
+        <img src="/{{ post.post_picture }}" alt="Post">
       </a>
     </div>
   {% endfor %}

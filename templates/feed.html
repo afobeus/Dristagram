@@ -5,31 +5,29 @@
     <a class="btn btn-dark" href="/addpost">Create a post</a>
 </p>
 {% for post in posts %}
-<div class="gallery">
-    <div class="card">
-        <div class="card-header">
-            <img src="{{ post.user.avatar }}" alt="Post">
-            <a href="">{{ post.user.nickname }}</a>
-            <span>{{ time_now - post.modified_date }} ago</span>
+<div class="card">
+    <div class="card-header">
+        <img src="{{ post.user.avatar }}" alt="Post">
+        <a href="">{{ post.user.nickname }}</a>
+        <span>{{ time_now - post.modified_date }} ago</span>
+    </div>
+    <div class="card-body">
+        {{ post.post_text }}
+        <img src="/{{ post.post_picture }}" alt="Post">
+    </div>
+    <div class="card-footer">
+        <div class="actions">
+            <a href=""><i class="fa fa-heart"></i></a>
+            <a href=""><i class="fa fa-comment"></i></a>
+            <a href=""><i class="fa fa-paper-plane"></i></a>
         </div>
-        <div class="card-body">
-            {{ post.post_text }}
-            <img src="/{{ post.post_picture }}" alt="Post">
+        <span class="likes">{{post.likes}} likes</span>
+        <div class="comments">
         </div>
-        <div class="card-footer">
-            <div class="actions">
-                <a href=""><i class="fa fa-heart"></i></a>
-                <a href=""><i class="fa fa-comment"></i></a>
-                <a href=""><i class="fa fa-paper-plane"></i></a>
-            </div>
-            <span class="likes">{{post.likes}} likes</span>
-            <div class="comments">
-            </div>
-            <form class="comment-form" action="/send_comment/{{ post.id }}" method="post">
-                <input type="text" placeholder="Add a comment..." name="comment_text">
-                <a class="btn btn-dark" href="/like_post/{{ post.id }}">Like the post</a>
-            </form>
-        </div>
+        <form class="comment-form" action="/send_comment/{{ post.id }}" method="post">
+            <input type="text" placeholder="Add a comment..." name="comment_text">
+            <a class="btn btn-dark" href="/like_post/{{ post.id }}">Like the post</a>
+        </form>
     </div>
 </div>
 {% endfor %}
