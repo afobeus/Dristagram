@@ -8,6 +8,7 @@ from forms.post import PostAddForm
 from forms.user import RegisterForm, LoginForm
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user, mixins
 from functions import format_social_media_post_time
+# from PIL import Image
 
 
 app = Flask(__name__)
@@ -65,6 +66,15 @@ def add_post():
 
         with open(post.post_picture, "wb") as file:
             file.write(request.files["post_picture"].read())
+
+        # image = Image.open(post.post_picture)
+        # width, height = image.size
+        # if width > 700 or height > 700:
+        #     image = image.resize((700, int(height * (700 / width))))
+        # # width, height = image.size
+        # # if height > 700:
+        # #     image = image.resize((int(width * (700 / height)), 700))
+        # image.save(post.post_picture)
 
         user = db_sess.query(User).filter(User.id == current_user.id).first()
         current_user.post.append(post)
