@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from PIL import Image
 
 
 def format_social_media_post_time(post_time):
@@ -45,3 +46,14 @@ def format_social_media_post_time(post_time):
     if seconds == 1:
         return "a second ago"
     return f"{seconds} seconds ago"
+
+
+def resize_image(image_path):
+    image = Image.open(image_path)
+    width, height = image.size
+    if width > 700 or height > 700:
+        image = image.resize((700, int(height * (700 / width))))
+    width, height = image.size
+    if height > 700:
+        image = image.resize((int(width * (700 / height)), 700))
+    image.save(image_path)
