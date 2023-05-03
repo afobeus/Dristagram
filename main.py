@@ -1,12 +1,16 @@
 from flask import Flask, redirect, render_template, request
-from data import db_session
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user, mixins
+
 from datetime import datetime
+import os
+
+from data import db_session
 from data.comments import Comment
 from data.users import User
 from data.posts import Post
 from forms.post import PostAddForm
 from forms.user import RegisterForm, LoginForm
-from flask_login import LoginManager, login_user, login_required, logout_user, current_user, mixins
+
 from functions import format_social_media_post_time, resize_image
 
 
@@ -61,17 +65,18 @@ def add_post():
         db_sess = db_session.create_session()
         post = Post()
         post.post_text = form.post_text.data
-        post.post_picture = f"static/img/post_img_{current_user.nickname}_{current_user.posts + 1}.png"
-
-        with open(post.post_picture, "wb") as file:
-            file.write(request.files["post_picture"].read())
-
+        file = form.post_picture.data
+        filename, file_extension = os.path.splitext(file.filename)
+        file_path = f"static/img/posts/post_img_{current_user.id}_{current_user.posts + 1}{file_extension}"
+        file.save(file_path)
+        resize_image(file_path)
+        post.post_picture = file_path
         user = db_sess.query(User).filter(User.id == current_user.id).first()
         current_user.post.append(post)
         db_sess.merge(current_user)
         user.posts += 1
         db_sess.commit()
-        resize_image(post.post_picture)
+
         return redirect("/feed")
     return render_template("add_post.html", title="Добавление поста", form=form)
 
