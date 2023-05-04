@@ -1,5 +1,6 @@
 from flask import Flask, redirect, render_template, request
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user, mixins
+from sqlalchemy import desc
 
 from datetime import datetime
 import os
@@ -47,7 +48,7 @@ def feed():
     if isinstance(current_user, mixins.AnonymousUserMixin):
         return redirect("/login")
     db_sess = db_session.create_session()
-    posts = db_sess.query(Post).all()
+    posts = db_sess.query(Post).order_by(desc(Post.modified_date)).all()
     time_now = datetime.now()
     if len(posts) > 10:
         posts = posts[:10]
@@ -69,7 +70,7 @@ def add_post():
         filename, file_extension = os.path.splitext(file.filename)
         file_path = f"static/img/posts/post_img_{current_user.id}_{current_user.posts + 1}{file_extension}"
         file.save(file_path)
-        resize_image(file_path)
+        # resize_image(file_path)
         post.post_picture = file_path
         user = db_sess.query(User).filter(User.id == current_user.id).first()
         current_user.post.append(post)
