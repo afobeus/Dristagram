@@ -177,7 +177,7 @@ header {
 
 .card-header img {
   border-radius: 50%;
-  width: 32px;
+  width: 50px;
   margin-right: 10px;
 }
 
@@ -196,6 +196,11 @@ header {
 .card-body img {
   width: 100%;
   max-height: 700px;
+  border-radius: 1%;
+}
+
+.card-body p {
+  margin-bottom: 10px;
 }
 
 .card-footer {

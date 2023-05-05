@@ -15,20 +15,17 @@
                 <span>{{ prescriptions[loop.index0] }}</span>
             </div>
             <div class="card-body">
-                {{ post.post_text }}
+                <p>{{ post.post_text }}</p>
                 <img src="/{{ post.post_picture }}" alt="Post">
             </div>
             <div class="card-footer">
-                <div class="actions">
-                    <a href=""><i class="fa fa-heart"></i></a>
-                    <a href=""><i class="fa fa-comment"></i></a>
-                    <a href=""><i class="fa fa-paper-plane"></i></a>
-                </div>
                 <span class="likes">{{post.likes}} likes</span>
                 <div class="comments">
                 </div>
                 <form class="comment-form" action="/send_comment/{{ post.id }}" method="post">
-                    <input type="text" placeholder="Add a comment..." name="comment_text">
+                    <label>
+                        <input type="text" placeholder="Add a comment..." name="comment_text">
+                    </label>
                     <a class="btn btn-dark" href="/like_post/{{ post.id }}/feed">Like the post</a>
                     <a class="btn btn-dark" href="/view_comments/{{ post.id }}">View all {{post.comments_number}} comments</a>
                 </form>
