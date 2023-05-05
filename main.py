@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, abort
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user, mixins
 from sqlalchemy import desc
 
@@ -186,6 +186,8 @@ def user_profile(nickname):
         return redirect("/login")
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.nickname == nickname).first()
+    if not user:
+        abort(404)
     values = {
         "title": f"Профиль {nickname}",
         "nickname": nickname,
