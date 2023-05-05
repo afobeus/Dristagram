@@ -27,7 +27,10 @@
                         <input type="text" placeholder="Add a comment..." name="comment_text">
                     </label>
                     <a class="btn btn-dark" href="/like_post/{{ post.id }}/feed">Like the post</a>
-                    <a class="btn btn-dark" href="/view_comments/{{ post.id }}">View all {{post.comments_number}} comments</a>
+                    {% if post.comments_number > 0 %}
+                        <a class="btn btn-dark" href="/view_comments/{{ post.id }}">
+                            View all {{post.comments_number}} comments</a>
+                    {% endif %}
                 </form>
             </div>
         </div>

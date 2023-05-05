@@ -26,6 +26,14 @@ def main():
     app.run(port=5000, host='127.0.0.1')
 
 
+@app.route("/view_comments/<int:post_id>")
+def view_comments(post_id):
+    db_sess = db_session.create_session()
+    post = db_sess.query(Post).filter(Post.id == post_id).first()
+    comments = post.comments
+    return render_template("comments.html", title="Комментарии", comments=comments)
+
+
 @app.route("/send_comment/<int:post_id>", methods=["POST"])
 def send_comment(post_id):
     if request.form["comment_text"]:

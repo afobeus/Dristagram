@@ -1,0 +1,7 @@
+{% extends "authorised_base.html" %}
+
+{% block content %}
+{% for elem in comments %}
+       <li>{{ elem.comment_text }}</li>
+{% endfor %}
+{% endblock %}
