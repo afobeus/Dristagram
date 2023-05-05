@@ -57,6 +57,7 @@ header {
   list-style: none;
   margin: 0;
   padding: 20px 10px;
+  width: 100%;
 }
 
 .nav-links li {
@@ -69,6 +70,7 @@ header {
   color: #333;
   text-decoration: none;
   font-size: 16px;
+  border-radius: 15%;
 }
 
 .nav-links a:hover {
@@ -266,4 +268,8 @@ header {
   grid-gap: 10px;
   justify-content: center;
   align-items: center;
+}
+
+#post-image {
+  display: none;
 }
