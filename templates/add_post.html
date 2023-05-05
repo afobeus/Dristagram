@@ -5,7 +5,7 @@
         <form action="" method="post" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
 
-            <p>
+            <div class="addpost-header">
                 {{ form.post_picture.label }}<br>
                 {{ form.post_picture(class="form-control", onchange="handleImageUpload(event)", accept=".jpg,.png") }}<br>
                 {% for error in form.post_picture.errors %}
@@ -13,8 +13,8 @@
                     {{ error }}
                 </div>
                 {% endfor %}
-            </p>
-            <p>
+            </div>
+            <div class="addpost-body">
                 <img id="post-image" alt="Картинка вашего поста">
                 {{ form.post_text.label }}<br>
                 {{ form.post_text(class="form-control") }}<br>
@@ -23,7 +23,7 @@
                         {{ error }}
                     </div>
                 {% endfor %}
-            </p>
+            </div>
             <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
             <div>{{ message }}</div>
         </form>

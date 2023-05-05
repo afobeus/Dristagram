@@ -273,3 +273,9 @@ header {
 #post-image {
   display: none;
 }
+
+.addpost-body img {
+  margin: 10px auto;
+  max-height: 700px;
+  border-radius: 1%;
+}
