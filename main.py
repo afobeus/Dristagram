@@ -1,5 +1,6 @@
-from flask import Flask, redirect, render_template, request, abort
+from flask import Flask, redirect, render_template, request, abort, jsonify, make_response
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user, mixins
+from flask_restful import Api
 from sqlalchemy import desc
 
 from datetime import datetime
@@ -11,11 +12,18 @@ from data.users import User
 from data.posts import Post
 from forms.post import PostAddForm
 from forms.user import RegisterForm, LoginForm
+import data.users_resource as users_resource
 
 from functions import format_social_media_post_time, resize_image
 
 
 app = Flask(__name__)
+
+api = Api(app)
+
+api.add_resource(users_resource.UsersListResource, '/api/users')
+api.add_resource(users_resource.UsersResource, '/api/users/<int:user_id>')
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -208,6 +216,16 @@ def post_page(post_id):
         "prescription": format_social_media_post_time(post.modified_date)
     }
     return render_template("post_page.html", **values)
+
+
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
+
+
+@app.errorhandler(400)
+def bad_request(_):
+    return make_response(jsonify({'error': 'Bad Request'}), 400)
 
 
 if __name__ == '__main__':
