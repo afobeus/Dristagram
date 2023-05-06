@@ -26,7 +26,7 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 def main():
     db_session.global_init("db/users.db")
     # app.run(port=5000, host='127.0.0.1')
-    serve(app, host="127.0.0.1", port=5000)
+    serve(app, host="0.0.0.0", port=5000)
 
 
 @app.route("/view_comments/<int:post_id>")
