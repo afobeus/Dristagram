@@ -14,6 +14,8 @@ from forms.user import RegisterForm, LoginForm
 
 from functions import format_social_media_post_time, resize_image
 
+from waitress import serve
+
 
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -23,7 +25,8 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 def main():
     db_session.global_init("db/users.db")
-    app.run(port=5000, host='127.0.0.1')
+    # app.run(port=5000, host='127.0.0.1')
+    serve(app, host="127.0.0.1", port=5000)
 
 
 @app.route("/view_comments/<int:post_id>")
