@@ -65,6 +65,24 @@ def register():
     return render_template('register.html', title='Регистрация', form=form)
 
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if not isinstance(current_user, mixins.AnonymousUserMixin):
+        return redirect(f"/feed")
+
+    form = LoginForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        user = db_sess.query(User).filter(User.nickname == form.login.data).first()  # Todo: form.login.data?
+        if user and user.check_password(form.password.data):
+            login_user(user, remember=form.remember_me.data)
+            return redirect(f"/user/{user.nickname}")
+        return render_template('login.html',
+                               message="Неправильный логин или пароль",
+                               form=form)
+    return render_template('login.html', title='Авторизация', form=form)
+
+
 @app.route("/view_comments/<int:post_id>")
 def view_comments(post_id):
     db_sess = db_session.create_session()
@@ -90,6 +108,7 @@ def send_comment(post_id):
     return redirect("/feed")
 
 
+@app.route("/", methods=["GET", "POST"])
 @app.route("/feed")
 def feed():
     if isinstance(current_user, mixins.AnonymousUserMixin):
@@ -152,24 +171,6 @@ def delete_post(post_id):
     db_sess.delete(post)
     db_sess.commit()
     return redirect("/feed")
-
-
-@app.route("/", methods=["GET", "POST"])
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if not isinstance(current_user, mixins.AnonymousUserMixin):
-        return redirect(f"/user/{current_user.nickname}")
-    form = LoginForm()
-    if form.validate_on_submit():
-        db_sess = db_session.create_session()
-        user = db_sess.query(User).filter(User.nickname == form.login.data).first()
-        if user and user.check_password(form.password.data):
-            login_user(user, remember=form.remember_me.data)
-            return redirect(f"/user/{user.nickname}")
-        return render_template('login.html',
-                               message="Неправильный логин или пароль",
-                               form=form)
-    return render_template('login.html', title='Авторизация', form=form)
 
 
 @login_manager.user_loader
